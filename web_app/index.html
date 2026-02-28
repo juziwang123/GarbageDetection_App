@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garbage Detection Web App</title>
+    <!-- ONNX Runtime Web (CDN) - Latest version for max compatibility with new models -->
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin: 20px; }
+        .container { position: relative; display: inline-block; }
+        video, canvas { position: absolute; top: 0; left: 0; }
+        #canvas-wrapper { position: relative; width: 640px; height: 480px; margin: 0 auto; background: #eee; }
+        .controls { margin-top: 20px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin: 5px; }
+        #status { margin-top: 10px; font-weight: bold; color: #333; }
+    </style>
+</head>
+<body>
+    <h1>🗑️ Garbage Detection</h1>
+    
+    <div id="canvas-wrapper">
+        <video id="webcam" width="640" height="480" autoplay playsinline muted></video>
+        <canvas id="canvas" width="640" height="480"></canvas>
+    </div>
+
+    <div class="controls">
+        <button onclick="startCamera()">📷 Start Camera</button>
+        <button onclick="stopCamera()">🛑 Stop Camera</button>
+        <!-- <input type="file" id="upload" accept="image/*" onchange="predictImage(this)"> -->
+    </div>
+    
+    <div id="status">Loading model...</div>
+
+    <script src="script.js"></script>
+    <script>
+       // Fallback manual trigger
+       setTimeout(() => {
+           if (typeof loadModel === 'function' && document.getElementById('status').innerText === 'Loading model...') {
+               console.log("Auto-trigger: loadModel not called by window.onload yet.");
+               loadModel();
+           }
+       }, 500);
+    </script>
+</body>
+</html>

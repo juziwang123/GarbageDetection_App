@@ -1,0 +1,16 @@
+names:
+  0: battery
+  1: biological
+  2: brown-glass
+  3: cardboard
+  4: clothes
+  5: green-glass
+  6: metal
+  7: paper
+  8: plastic
+  9: shoes
+  10: trash
+  11: white-glass
+path: D:/人工智能/GarbageDetection_App/dataset/yolo_format
+train: train/images
+val: val/images
